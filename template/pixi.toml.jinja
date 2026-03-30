@@ -30,4 +30,6 @@ pull = "dvc pull"
 push = "dvc push"
 test = "pytest tests/ -v"
 lint = "ruff check {{ package_name }}/ scripts/"
+format-check = "ruff format --check --diff ."
+format = "ruff format ."
 {% if include_marimo %}notebook = "marimo edit"{% endif %}
