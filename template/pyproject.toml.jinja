@@ -21,7 +21,16 @@ dependencies = [
     "scipy",
     "matplotlib",
     "seaborn",
+    "altair",
+    "vegafusion",
+    "vl-convert-python",
     "scikit-learn",
+    {% if include_marimo %}
+    "marimo",
+    {% endif %}
+    {% if include_trialframe %}
+    "trialframe @ git+https://github.com/raeedcho/trialframe.git",
+    {% endif %}
 ]
 
 [project.optional-dependencies]

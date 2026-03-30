@@ -1,4 +1,4 @@
-[project]
+[workspace]
 name = "{{ project_name }}"
 description = "{{ description }}"
 channels = ["conda-forge"]
@@ -21,14 +21,8 @@ dvc = "*"
 [feature.dev.dependencies]
 pytest = ">=8.0"
 ruff = ">=0.4"
-{% if include_marimo %}
-[feature.notebooks.dependencies]
-marimo = "*"
-jupyterlab = "*"
-{% endif %}
 [environments]
 default = { features = ["dev"], solve-group = "default" }
-{% if include_marimo %}notebooks = { features = ["dev", "notebooks"], solve-group = "default" }{% endif %}
 
 [tasks]
 pipeline = "dvc repro"

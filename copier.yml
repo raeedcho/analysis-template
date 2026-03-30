@@ -30,7 +30,7 @@ author_name:
 python_version:
   type: str
   help: "Python version constraint"
-  default: ">=3.11,<3.14"
+  default: ">=3.11,<3.13"
 
 include_hydra:
   type: bool
@@ -40,6 +40,11 @@ include_hydra:
 include_marimo:
   type: bool
   help: "Include marimo notebook support?"
+  default: true
+
+include_trialframe:
+  type: bool
+  help: "Include trialframe support?"
   default: true
 
 _tasks:
