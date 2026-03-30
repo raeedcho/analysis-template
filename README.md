@@ -6,7 +6,7 @@ A copier template for neuroscience analysis projects with DVC pipelines.
 
 ```bash
 # Install copier
-pipx install copier
+pipx install copier # or brew install copier
 
 # Create a new project
 copier copy gh:raeedcho/analysis-template /path/to/new-project

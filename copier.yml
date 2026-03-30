@@ -41,3 +41,7 @@ include_marimo:
   type: bool
   help: "Include marimo notebook support?"
   default: true
+
+_tasks:
+  - "git init"
+  - "pixi install"
