@@ -1,0 +1,25 @@
+# ── Directory structure ────────────────────────────────────────────────────
+# Paths are relative to the repo root unless absolute.
+dir_structure:
+  raw_data_dir: /path/to/raw/data
+  trialframe_dir: data/trialframe
+  config_dir: conf
+  log_dir: logs
+  results_dir: results
+
+logging:
+  loglevel: INFO
+
+# ── Sessions to process ────────────────────────────────────────────────────
+# Each entry becomes an iteration of DVC foreach stages.
+datasets:
+  - monkey: SubjectA
+    date: "2025-01-01"
+    dataset_name: SubjectA_2025-01-01
+
+# ── Stage parameters ──────────────────────────────────────────────────────
+# Add parameter groups as you add stages to dvc.yaml.
+# Example:
+# extract:
+#   bin_size: 10ms
+#   min_firing_rate: 0.1

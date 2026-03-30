@@ -1,0 +1,8 @@
+[core]
+    autostage = true
+# Configure your remote:
+# [cache]
+#     dir = /path/to/OneDrive/dvc-cache
+#     type = reflink
+# ['remote "localremote"']
+#     url = /path/to/OneDrive/dvc-store

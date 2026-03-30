@@ -1,0 +1,43 @@
+# Template settings
+_min_copier_version: "9.0.0"
+_subdirectory: template
+_skip_if_exists:
+  - "params.yaml"
+  - ".dvc/config"
+  - "conf/**"
+
+# ── Questions ───────────────────────────────────────────────────────────────
+
+project_name:
+  type: str
+  help: "Project name (e.g. cst-machinery, ofc-analysis)"
+
+package_name:
+  type: str
+  help: "Python package name for importable code (e.g. src)"
+  default: "src"
+
+description:
+  type: str
+  help: "One-line project description"
+  default: "Analysis pipeline for {{ project_name }}"
+
+author_name:
+  type: str
+  help: "Your full name"
+  default: "Raeed Chowdhury"
+
+python_version:
+  type: str
+  help: "Python version constraint"
+  default: ">=3.11,<3.14"
+
+include_hydra:
+  type: bool
+  help: "Include Hydra config directory (conf/) and plugins?"
+  default: true
+
+include_marimo:
+  type: bool
+  help: "Include marimo notebook support?"
+  default: true

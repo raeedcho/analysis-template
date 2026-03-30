@@ -1,0 +1,48 @@
+# {{ project_name }}
+
+{{ description }}
+
+## Setup
+
+```bash
+# Install pixi if you haven't already: https://pixi.sh
+pixi install
+
+# Configure DVC remote (edit .dvc/config with your paths)
+# Then: pixi run pull
+```
+
+## Usage
+
+```bash
+# Run the full DVC pipeline
+pixi run pipeline
+
+# Run a specific stage
+dvc repro <stage_name>
+
+# Run tests
+pixi run test
+{% if include_marimo %}
+# Open a marimo notebook
+pixi run -e notebooks notebook notebooks/marimo/explore.py
+{% endif %}
+```
+
+## Project structure
+
+```
+├── {{ package_name }}/     # Importable analysis package (pip install -e .)
+├── scripts/                # DVC pipeline stage scripts
+├── data/                   # DVC-tracked data (per-session parquet files)
+├── results/                # DVC-tracked outputs (figures, models)
+├── conf/                   # Hydra / pipeline configuration
+├── logs/                   # Per-stage log files
+├── notebooks/              # Exploratory notebooks{% if include_marimo %} (marimo + jupyter){% endif %}
+
+├── tests/                  # Unit tests
+├── pyproject.toml          # Python package metadata + deps
+├── pixi.toml               # Environment + tasks (reads pyproject.toml)
+├── dvc.yaml                # Pipeline definition
+└── params.yaml             # Pipeline parameters (datasets, stage configs)
+```

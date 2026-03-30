@@ -1,0 +1,39 @@
+[project]
+name = "{{ project_name }}"
+description = "{{ description }}"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64"]
+
+[dependencies]
+python = "{{ python_version }}"
+
+# Add conda-forge packages here for compiled deps that pip can't handle well.
+# Example:
+# numpy = "*"
+# scipy = "*"
+# h5py = "*"
+
+# Installs {{ package_name }}/ + all [project.dependencies] from pyproject.toml
+[pypi-dependencies]
+{{ package_name }} = { path = ".", editable = true }
+dvc = "*"
+
+[feature.dev.dependencies]
+pytest = ">=8.0"
+ruff = ">=0.4"
+{% if include_marimo %}
+[feature.notebooks.dependencies]
+marimo = "*"
+jupyterlab = "*"
+{% endif %}
+[environments]
+default = { features = ["dev"], solve-group = "default" }
+{% if include_marimo %}notebooks = { features = ["dev", "notebooks"], solve-group = "default" }{% endif %}
+
+[tasks]
+pipeline = "dvc repro"
+pull = "dvc pull"
+push = "dvc push"
+test = "pytest tests/ -v"
+lint = "ruff check {{ package_name }}/ scripts/"
+{% if include_marimo %}notebook = "marimo edit"{% endif %}

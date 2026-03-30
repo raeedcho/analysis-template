@@ -1,0 +1,24 @@
+# Pixi
+.pixi/
+
+# Python
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+dist/
+build/
+
+# OS
+.DS_Store
+
+# DVC local config
+.dvc/config.local
+.dvc/tmp/
+.dvc/cache/
+
+# Data and results are tracked by DVC, not git
+# Uncomment these once you have DVC tracking set up:
+# /data/
+# /results/

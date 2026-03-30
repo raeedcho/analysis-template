@@ -1,0 +1,25 @@
+vars:
+  - params.yaml
+{% if include_hydra %}  - conf/trialframe.yaml{% endif %}
+
+# ── Pipeline stages ────────────────────────────────────────────────────────
+# Stages use DVC foreach to process each session independently.
+# Add new stages as your analysis matures from notebooks → scripts.
+#
+# Example stage:
+# stages:
+#   extract:
+#     foreach: ${datasets}
+#     do:
+#       cmd: python scripts/extract_data.py --dataset ${item.dataset_name} ${dir_structure} ${logging}
+#       params:
+#         - dir_structure
+#         - logging
+#         - extract
+#       deps:
+#         - scripts/extract_data.py
+#         - {{ package_name }}/
+#         - ${dir_structure.raw_data_dir}/${item.monkey}/${item.date}/
+#       outs:
+#         - ${dir_structure.trialframe_dir}/${item.dataset_name}/
+#         - ${dir_structure.log_dir}/extract/${item.dataset_name}.log

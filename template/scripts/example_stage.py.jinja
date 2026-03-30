@@ -1,0 +1,51 @@
+"""Example DVC pipeline stage.
+
+This shows the pattern used in cst-machinery:
+- Parse CLI args (matching params.yaml keys)
+- Set up logging
+- Import from the {{ package_name }} source package
+- Read input data, process, write output data
+
+To add this as a DVC stage, add to dvc.yaml:
+
+stages:
+  example:
+    foreach: ${datasets}
+    do:
+      cmd: >-
+        python scripts/example_stage.py
+        --dataset ${item.dataset_name}
+        ${dir_structure} ${logging}
+      params:
+        - dir_structure
+        - logging
+      deps:
+        - scripts/example_stage.py
+        - {{ package_name }}/
+        - ${dir_structure.trialframe_dir}/${item.dataset_name}/
+      outs:
+        - ${dir_structure.log_dir}/example/${item.dataset_name}.log
+"""
+from {{ package_name }}.cli import parse_args, setup_logging
+from {{ package_name }}.io import load_signal
+from pathlib import Path
+
+
+def main(args):
+    logger = setup_logging(args, "example")
+    logger.info(f"Processing dataset: {args.dataset}")
+
+    # Load data
+    # meta = load_signal(Path(args.trialframe_dir), args.dataset, "meta")
+
+    # Process...
+
+    logger.info("Done.")
+
+
+if __name__ == "__main__":
+    args = parse_args(
+        description="Example pipeline stage",
+        # extra_args=[("--my_param", {"default": 42, "type": int})],
+    )
+    main(args)
